@@ -6,5 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: typst-community/setup-typst@v4
-      # 🎉 Now Typst is installed!
       - run: typst compile main.typ codebook.pdf
+      - uses: actions/upload-artifact@v4
+        with:
+          name: codebook
+          path: codebook.pdf
