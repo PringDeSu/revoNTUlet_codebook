@@ -71,10 +71,10 @@
 #CodeBlocks("Point", "src/geometry/point.cpp")
 // not tested yet
 #CodeBlocks("Convex Hull", "src/geometry/convex_hull.cpp")
+// tested at https://codeforces.com/gym/106059/problem/A
+#CodeBlocks("Tangent of Convex Hull", "src/geometry/tangent.cpp")
 // tested at https://codeforces.com/group/79niCea2aI/contest/542496/problem/M
 #CodeBlocks("Minkowski Sum", "src/geometry/minkowski.cpp")
-// tested at https://codeforces.com/gym/613669/problem/F
-#CodeBlocks("Half Plane Intersection", "src/geometry/half_plane_intersect.cpp")
 // tested at https://codeforces.com/gym/613669/problem/F
 #CodeBlocks("Half Plane Intersection", "src/geometry/half_plane_intersect.cpp")
 // tested at https://codeforces.com/group/16AkdQqf1V/contest/632330/problem/C
