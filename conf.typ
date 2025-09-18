@@ -8,7 +8,7 @@
     stroke: (left: 1pt + black),
     outset: (2pt),
     zebraw(
-      background-color: (rgb(250, 250, 250, 127), rgb(230, 230, 230, 127)),
+      background-color: (rgb(0, 0, 0, 0)),
       indentation: 4,
       numbering: false,
       lang: false,
