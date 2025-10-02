@@ -57,7 +57,7 @@
 #CodeBlocks("Dynamic Convex Hull", "src/data_structure/dynamic_convex_hull.cpp")
 // tested at https://judge.yosupo.jp/submission/239483
 #CodeBlocks("Link Cut Tree", "src/data_structure/lct.cpp")
-// not tested yet
+// tested at https://judge.yosupo.jp/submission/318108
 #CodeBlocks("Li Chao", "src/data_structure/li_chao.cpp")
 // not tested yet
 #CodeBlocks("Quadrangle", "src/data_structure/quadrangle.cpp")
@@ -69,7 +69,7 @@
 = Geometry
 // not tested yet
 #CodeBlocks("Point", "src/geometry/point.cpp")
-// not tested yet
+// tested at https://judge.yosupo.jp/submission/318115
 #CodeBlocks("Convex Hull", "src/geometry/convex_hull.cpp")
 // tested at https://codeforces.com/gym/106059/problem/A
 #CodeBlocks("Tangent of Convex Hull", "src/geometry/tangent.cpp")
@@ -108,3 +108,6 @@
 #CodeBlocks("Pollard Rho", "src/math/pollard_rho.cpp")
 // not tested yet
 #CodeBlocks("Floor Sum", "src/math/floor_sum.cpp")
+
+= Notes
+#include "src/notes/notes.typ"
