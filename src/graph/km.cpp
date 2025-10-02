@@ -1,4 +1,5 @@
 // Kuhn-Munkres : Bipartite matching with "maximum" weight in O(n^3)
+// NOTICE THAT match[y] = x 
 struct KM{
     const static int M = 500; // modify maximum number of vertices
     int n;
