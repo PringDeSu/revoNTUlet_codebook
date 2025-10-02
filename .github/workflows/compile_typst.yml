@@ -1,13 +1,40 @@
-name: Render codebook.pdf
-on: push
+name: Typst Build
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.typ'
+
 jobs:
-  render-codebook:
+  build_typst:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: typst-community/setup-typst@v4
-      - run: typst compile main.typ codebook.pdf
-      - uses: actions/upload-artifact@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v4
         with:
-          name: codebook
-          path: codebook.pdf
+          version: '0.11.0'
+
+      - name: Compile Typst files
+        run: typst compile main.typ codebook.pdf
+
+      - name: Commit and push PDF to a new branch
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+
+          git checkout --orphan pdf
+
+          git rm --cached -r .
+
+          git add codebook.pdf -f
+          git commit -m 'pushed pdf to branch'
+          
+          git push --force origin pdf
