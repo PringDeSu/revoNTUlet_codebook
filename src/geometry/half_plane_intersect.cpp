@@ -54,6 +54,7 @@ temp int sgn(T v) {
 temp int ori(ptt a, ptt b, ptt c) {
 	return sgn(cross(b - a, c - a));
 }
+// intersects Line(p1, p2), Line(p3, p4)
 pdd intersect(pdd p1, pdd p2, pdd p3, pdd p4) {
 	ld a123 = cross(p2 - p1, p3 - p1);
 	ld a124 = cross(p2 - p1, p4 - p1);
@@ -69,6 +70,8 @@ int cmp(pll a, pll b, bool same = true) {
 }
 
 using Line = pair<pll, pll>;
+// cross(p - line.X, line.Y-line.X) <= 0 <-> p in half plane
+// LHS when going from line.X to line.Y
 
 pll area_pair(Line a, Line b) {
 	return pll(cross(a.Y - a.X, b.X - a.X), cross(a.Y - a.X, b.Y - a.X));
@@ -79,7 +82,7 @@ bool isin(Line l0, Line l1, Line l2) {
 	if (a12X - a12Y < 0) a12X *= -1, a12Y *= -1;
 	return (__int128) a02Y * a12X - (__int128) a02X * a12Y > 0;
 }
-vector<Line> halfPlaneInter(vector<Line> arr) {
+vector<Line> HalfPlaneInter(vector<Line> arr) {
 	sort(iter(arr), [&](Line a, Line b) -> int {
 		if (cmp(a.Y - a.X, b.Y - b.X, 0) != -1)
 			return cmp(a.Y - a.X, b.Y - b.X, 0);
@@ -101,3 +104,4 @@ vector<Line> halfPlaneInter(vector<Line> arr) {
 		dq.pop_front();
 	return vector<Line>(iter(dq));
 }
+
