@@ -1,6 +1,6 @@
 #define ll long long
-//needs splay
-//vertex add paths sum link-cut
+// 1-based, needs splay
+// vertex add paths sum link-cut
 struct LCT{
 	Splay sp;
 	void access(int x){

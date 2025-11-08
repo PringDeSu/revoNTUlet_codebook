@@ -1,4 +1,5 @@
 // [0, n): round points, [n, tr.size()): square points
+// take care of cases when n=1
 struct BlockCutTree { // 0 based
 	vector<vector<int>> paths, tr;
 	vector<int> idx, low, stk;
