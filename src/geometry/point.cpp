@@ -7,7 +7,7 @@ struct Pt{
 	T operator*(Pt b)const{return x*b.x+y*b.y;}
 	T operator^(Pt b)const{return x*b.y-y*b.x;}
 	T operator/(Pt b)const{return x*b.y-y*b.x;}
-  bool operator<=>(const Pt& b) = default; // since C++20
+  auto operator<=>(const Pt& b) const = default; // since C++20
 
 	friend int dir(Pt a,Pt b){//returns sign(a ^ b)
 		auto re = a ^ b;
