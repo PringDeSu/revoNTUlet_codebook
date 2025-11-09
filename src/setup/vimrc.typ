@@ -9,6 +9,7 @@
   colo evening
   :bad input.txt
   :let @# = 'input.txt'
+  ca Hash w !cpp -dD -P -fpreprocessed \| tr -d "[:space:]" \| md5sum \| cut -c-6
  ```
 )
 

@@ -1,4 +1,5 @@
 #import "@preview/zebraw:0.5.4": *
+#import "@preview/digestify:0.1.0": *
 
 #let VAR_TEAM_NAME = "National Taiwan University - revoNTUlet"
 
@@ -17,8 +18,24 @@
   )
 )
 
+#let FileMd5(filename) = {
+  let content = read(filename)
+    .split("\n")
+    .map(line => line.split("//").first())
+    .join("\n")
+    .replace(regex("\\s"), "")
+  
+  let file_hash = md5(bytes(content))
+  bytes-to-hex(file_hash)
+}
+
 #let CodeBlocks(name, filename) = {
-  heading(level: 2, name)
+  heading(
+    level: 2, 
+    supplement: [
+      \[#FileMd5(filename).slice(0, 5)\]
+    ],
+  )[#name]
   CodeSpace(
     raw(
       block: true,
@@ -27,5 +44,4 @@
     )
   )
 }
-
 
