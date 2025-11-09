@@ -50,6 +50,8 @@
 #CodeBlocks("Max Clique", "src/graph/max_clique.cpp")
 // tested at https://codeforces.com/group/16AkdQqf1V/contest/628697/problem/T
 #CodeBlocks("Minimum Cost Maximum Flow", "src/graph/mcmf.cpp")
+// tested at https://judge.yosupo.jp/submission/327539
+#CodeBlocks("Minimum Cost Maximum Flow", "src/graph/general_matching.cpp")
 
 = Data Structure
 // reference : 8BCube
