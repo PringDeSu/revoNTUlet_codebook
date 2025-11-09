@@ -1,6 +1,5 @@
-#import "conf.typ": *
 #import "@preview/grayness:0.4.0": image-transparency
-
+#import "conf.typ": *
 
 #set page(
   header: text(size: 12pt, {
@@ -20,9 +19,27 @@
 //                                CONTENT                               //
 //////////////////////////////////////////////////////////////////////////
 
+#set heading(numbering: "1.1")
+#set heading(supplement: none)
 #block(height: 400pt, columns(2, gutter: 8pt, outline()))
 
-#set heading(numbering: "1.1")
+#show heading: it => {
+  block(
+    above: 1.2em,
+    below: 0.6em,
+    {
+      if it.numbering != none {
+        counter(heading).display(it.numbering)
+        h(0.5em)
+      }
+      it.body
+      if it.supplement != none {
+        h(0.5em)
+        it.supplement
+      }
+    }
+  )
+}
 
 = Setup
 == Remap Escape
