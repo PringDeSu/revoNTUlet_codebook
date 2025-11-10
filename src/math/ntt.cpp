@@ -61,7 +61,7 @@ NTT ntt3(3, 160, 167772161);
 
 namespace POLY {
     const int MXM = 4 * MXN;
-    int a[MXN], b[MXN];
+    int a[MXM], b[MXM];
     vector<int> VMUL(vector<int> v, vector<int> w, int m) {
         int N = 4 << __lg(m);
         fill(a, a + N, 0);
