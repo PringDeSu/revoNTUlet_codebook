@@ -92,6 +92,7 @@
 #CodeBlocks("Convex Hull", "src/geometry/convex_hull.cpp")
 // tested at https://codeforces.com/gym/106059/problem/A
 #CodeBlocks("Tangent of Convex Hull", "src/geometry/tangent.cpp")
+#CodeBlocks("Point In Convex", "src/geometry/point_in_convex.cpp")
 // tested at https://codeforces.com/group/79niCea2aI/contest/542496/problem/M
 #CodeBlocks("Minkowski Sum", "src/geometry/minkowski.cpp")
 // tested at https://codeforces.com/gym/613669/problem/F
