@@ -92,6 +92,7 @@
 #CodeBlocks("Convex Hull", "src/geometry/convex_hull.cpp")
 // tested at https://codeforces.com/gym/106059/problem/A
 #CodeBlocks("Tangent of Convex Hull", "src/geometry/tangent.cpp")
+// not tested yet
 #CodeBlocks("Point In Convex", "src/geometry/point_in_convex.cpp")
 // tested at https://codeforces.com/group/79niCea2aI/contest/542496/problem/M
 #CodeBlocks("Minkowski Sum", "src/geometry/minkowski.cpp")
@@ -99,7 +100,9 @@
 #CodeBlocks("Half Plane Intersection", "src/geometry/half_plane_intersect.cpp")
 // tested at https://codeforces.com/group/16AkdQqf1V/contest/632330/problem/C
 #CodeBlocks("Min Enclosing Circle", "src/geometry/min_enclosing_circle.cpp")
+// not tested yet
 #CodeBlocks("Tangent Of Two Circles", "src/geometry/tangent_of_two_circles.cpp")
+// not tested yet
 #CodeBlocks("Circle Cover", "src/geometry/circle_cover.cpp")
 
 
@@ -114,6 +117,12 @@
 #CodeBlocks("Manacher", "src/string/manacher.cpp")
 // tested at https://judge.yosupo.jp/problem/longest_common_substring
 #CodeBlocks("Suffix Array", "src/string/suffix_array.cpp")
+// not tested yet
+#CodeBlocks("SAM", "src/string/SAM.cpp")
+// not tested yet
+#CodeBlocks("eertree", "src/string/eertree.cpp")
+// tested at https://cses.fi/problemset/task/1110/
+#CodeBlocks("minimal rotation", "src/string/minmal_rotation.cpp")
 
 = Math
 // not tested yet
