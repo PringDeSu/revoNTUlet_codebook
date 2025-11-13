@@ -78,12 +78,14 @@
 #CodeBlocks("Link Cut Tree", "src/data_structure/lct.cpp")
 // tested at https://judge.yosupo.jp/submission/318108
 #CodeBlocks("Li Chao", "src/data_structure/li_chao.cpp")
-// not tested yet
-#CodeBlocks("Quadrangle", "src/data_structure/quadrangle.cpp")
 // tested at https://judge.yosupo.jp/submission/239343
 #CodeBlocks("Splay", "src/data_structure/splay.cpp")
 // tested at https://judge.yosupo.jp/submission/238822
 #CodeBlocks("Treap", "src/data_structure/treap.cpp")
+// not tested yet
+#CodeBlocks("Quadrangle", "src/data_structure/quadrangle.cpp")
+// not tested yet
+#CodeBlocks("SMAWK", "src/data_structure/smawk.cpp")
 
 = Geometry
 // not tested yet
@@ -122,7 +124,7 @@
 // not tested yet
 #CodeBlocks("eertree", "src/string/eertree.cpp")
 // tested at https://cses.fi/problemset/task/1110/
-#CodeBlocks("minimal rotation", "src/string/minmal_rotation.cpp")
+#CodeBlocks("minimal rotation", "src/string/minimal_rotation.cpp")
 
 = Math
 // not tested yet
