@@ -21,7 +21,7 @@
 
 #set heading(numbering: "1.1")
 #set heading(supplement: none)
-#block(height: 400pt, columns(2, gutter: 8pt, outline()))
+#block(height: 450pt, columns(2, gutter: 8pt, outline()))
 
 #show heading: it => {
   block(
