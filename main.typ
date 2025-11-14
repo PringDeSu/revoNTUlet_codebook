@@ -142,5 +142,6 @@
 // not tested yet
 #CodeBlocks("Floor Sum", "src/math/floor_sum.cpp")
 
+#pagebreak()
 = Notes
 #include "src/notes/notes.typ"
