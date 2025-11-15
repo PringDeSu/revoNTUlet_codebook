@@ -142,6 +142,10 @@
 // not tested yet
 #CodeBlocks("Floor Sum", "src/math/floor_sum.cpp")
 
+= Ideograph Advantage
+// tested at 2025 Taichung Regional
+#CodeBlocks("3d Donut", "src/misc/donut.c")
+
 #pagebreak()
 = Notes
 #include "src/notes/notes.typ"
