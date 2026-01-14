@@ -1,6 +1,5 @@
-
 struct Dinic { // 0-indexed
-// watch out for e.f overflow
+  // watch out for e.f overflow
   struct E { int v, c, f; };
   vector<vector<int>> g;
   vector<int> p, d;
@@ -50,12 +49,12 @@ struct Dinic { // 0-indexed
   }
   int flow(int s, int t) {
     int ans = 0;
-		for (int l = 0; l < 31; l++) {
-			while (bfs(s, t, l)) {
-				fill(p.begin(), p.end(), 0);
-				while (auto re = dfs(s, t, INT_MAX)) ans += re;
-			}
-		}
+    for (int l = 0; l < 31; l++) {
+      while (bfs(s, t, l)) {
+        fill(p.begin(), p.end(), 0);
+        while (auto re = dfs(s, t, INT_MAX)) ans += re;
+      }
+    }
     return ans;
   }
   bool inscut(int k) {
