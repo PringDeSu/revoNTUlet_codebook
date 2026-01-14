@@ -1,31 +1,30 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 #define ll long long
 const int SZ = 2e5+10;
 //1-indexed,0 used for nullptr
 //range reverse range sum
 struct Splay{
-#define ls ch[now][0]
-#define rs ch[now][1]
+#define ls ch[x][0]
+#define rs ch[x][1]
+#define p fa[x]
+#define g fa[fa[x]]
   ll val[SZ];
   ll sum[SZ];
   int ch[SZ][2],fa[SZ],cnt,rev[SZ],sz[SZ];
-  void pull(int now){
-    if(!now)return;
-    sum[now] = sum[ls]+sum[rs]+val[now];
-    sz[now] = sz[ls]+sz[rs]+1;
+  void pull(int x){
+    if(!x)return;
+    sum[x] = sum[ls]+sum[rs]+val[x];
+    sz[x] = sz[ls]+sz[rs]+1;
     return;
   }
-  void push(int now){
-    if(!now)return;
-    if(rev[now]){
+  void push(int x){
+    if(!x)return;
+    if(rev[x]){
       swap(ls,rs);
       rev[ls] ^= 1;
       rev[rs] ^= 1;
-      rev[now] = 0;
+      rev[x] = 0;
     }
-    pull(now);
+    pull(x);
     return;
   }
   Splay(){
@@ -35,57 +34,49 @@ struct Splay{
   int newnode(){
     return ++cnt;
   }
-  int dir(int now){//is ls or rs
-    return ch[fa[now]][1] == now;
+  int dir(int x){//is ls or rs
+    return ch[p][1] == x;
   }
-  bool isroot(int k){//for LCT
-    return !fa[k]||ch[fa[k]][dir(k)] != k;
+  bool isroot(int x){//the || is for LCT
+    return !p||ch[p][dir(x)] != x;
   }
-  void rot(int now){
-    assert(now);
-    assert(fa[now]);
-    int p = fa[now];
-    int g = fa[p];
-    push(g);
-    push(p);
-    push(now);
-    int d = dir(now);
-    if(!isroot(p))ch[g][dir(p)] = now;
-    fa[ch[now][d^1]] = p;
-    ch[p][d] = ch[now][d^1];
-    fa[now] = g;
-    fa[p] = now;
-    ch[now][d^1] = p;
-    pull(p);
-    pull(now);
+  void rot(int x){ //g, p, x, here are _g, _p, _x
+    int _p = p, _g = g, _x = x;
+    push(_g); push(_p); push(_x);
+    int d = dir(_x);
+    if(!isroot(_p))ch[_g][dir(_p)] = _x;
+    fa[ch[x][d^1]] = _p;
+    ch[_p][d] = ch[_x][d^1];
+    fa[_x] = _g;
+    fa[_p] = _x;
+    ch[_x][d^1] = _p;
+    pull(_p);
+    pull(_x);
     return;
   }
-  void splay(int now){
-    if(!now)return;
-    while(!isroot(now)){
-      push(fa[fa[now]]);
-      push(fa[now]);
-      push(now);
-      if(!isroot(fa[now])){
-        if(dir(fa[now]) == dir(now))rot(fa[now]);
-        else rot(now);
+  void splay(int x){
+    if(!x)return;
+    while(!isroot(x)){
+      push(g); push(p); push(x);
+      if(!isroot(p)){
+        rot(dir(p) == dir(x)? p: x);
       }
-      rot(now);
+      rot(x);
     }
-    push(now);
+    push(x);
     return;
   }
-  int get_sz(int now,int tar){
-    push(now);
-    while(now&&sz[ls]+1 != tar){
-      if(sz[ls]>=tar)now = ls;
+  int get_sz(int x,int y){
+    push(x);
+    while(x&&sz[ls]+1 != y){
+      if(sz[ls]>=y)x = ls;
       else{
-        tar -= sz[ls]+1;
-        now = rs;
+        y -= sz[ls]+1;
+        x = rs;
       }
-      push(now);
+      push(x);
     }
-    return now;
+    return x;
   }
   void merge(int a,int b){
     if(!a||!b)return;
@@ -98,10 +89,10 @@ struct Splay{
     pull(a);
     return;
   }
-  pair<int,int> split(int a,int tar){
+  pair<int,int> split(int a,int s){
     splay(a);
-    if(!tar)return make_pair(0,a);
-    int b = get_sz(a,tar);
+    if(!s)return make_pair(0,a);
+    int b = get_sz(a,s);
     splay(b);
     pair<int,int> re;
     re.first = b;
@@ -113,4 +104,6 @@ struct Splay{
   }
 #undef ls
 #undef rs
+#undef p
+#undef g
 };
