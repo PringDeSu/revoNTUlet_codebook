@@ -1,4 +1,6 @@
+
 struct Dinic { // 0-indexed
+// watch out for e.f overflow
   struct E { int v, c, f; };
   vector<vector<int>> g;
   vector<int> p, d;
@@ -15,7 +17,7 @@ struct Dinic { // 0-indexed
     g[v].push_back(e.size());
     e.push_back(E{u, cv, 0});
   }
-  bool bfs(int s, int t) {
+  bool bfs(int s, int t, int l) {
     fill(d.begin(), d.end(), -1);
     d[s] = 0;
     q.push(s);
@@ -23,7 +25,7 @@ struct Dinic { // 0-indexed
       int u = q.front();
       q.pop();
       for (auto &ei : g[u]) {
-        if (e[ei].f == e[ei].c) continue;
+        if (!((e[ei].c-e[ei].f) >> (30-l))) continue;
         int v = e[ei].v;
         if (d[v] == -1) {
           d[v] = d[u] + 1;
@@ -48,10 +50,12 @@ struct Dinic { // 0-indexed
   }
   int flow(int s, int t) {
     int ans = 0;
-    while (bfs(s, t)) {
-      fill(p.begin(), p.end(), 0);
-      while (auto re = dfs(s, t, INT_MAX)) ans += re;
-    }
+		for (int l = 0; l < 31; l++) {
+			while (bfs(s, t, l)) {
+				fill(p.begin(), p.end(), 0);
+				while (auto re = dfs(s, t, INT_MAX)) ans += re;
+			}
+		}
     return ans;
   }
   bool inscut(int k) {
