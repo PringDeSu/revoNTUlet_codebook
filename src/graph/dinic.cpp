@@ -1,62 +1,63 @@
-struct Dinic{//0-indexed
-  struct E{
-    int t,f,c;
-    E(int tt = 0,int cc = 0,int ff = 0):t(tt),c(cc),f(ff){}
-  };
-  vector<vector<int>> paths;
-  vector<int> ptr,lvl;
+struct Dinic { // 0-indexed
+  // watch out for e.f overflow
+  struct E { int v, c, f; };
+  vector<vector<int>> g;
+  vector<int> p, d;
   vector<E> e;
   queue<int> q;
-  Dinic(int _n = 0){
-    paths = vector<vector<int>>(_n);
-    ptr = lvl = vector<int>(_n);
+  void init(int n) {
+    g.resize(n);
+    p.resize(n);
+    d.resize(n);
   }
-  void add_edge(int a,int b,int c,int d = 0){
-    paths[a].push_back(e.size());
-    e.push_back(E(b,c));
-    paths[b].push_back(e.size());
-    e.push_back(E(a,d));
+  void ae(int u, int v, int cu, int cv = 0) {
+    g[u].push_back(e.size());
+    e.push_back(E{v, cu, 0});
+    g[v].push_back(e.size());
+    e.push_back(E{u, cv, 0});
   }
-  bool bfs(int s,int t){
-    fill(lvl.begin(),lvl.end(),-1);
+  bool bfs(int s, int t, int l) {
+    fill(d.begin(), d.end(), -1);
+    d[s] = 0;
     q.push(s);
-    lvl[s] = 0;
-    while(!q.empty()){
-      auto now = q.front();q.pop();
-      for(auto &eid:paths[now]){
-        if(e[eid].f == e[eid].c)continue;
-        if(lvl[e[eid].t] == -1){
-          lvl[e[eid].t] = lvl[now]+1;
-          q.push(e[eid].t);
+    while (q.size()) {
+      int u = q.front();
+      q.pop();
+      for (auto &ei : g[u]) {
+        if (!((e[ei].c-e[ei].f) >> (30-l))) continue;
+        int v = e[ei].v;
+        if (d[v] == -1) {
+          d[v] = d[u] + 1;
+          q.push(v);
         }
       }
     }
-    return lvl[t] != -1;
+    return d[t] != -1;
   }
-  int dfs(int now,int t,int flow){
-    if(now == t)return flow;
-    for(int &i = ptr[now];i<paths[now].size();i++){
-      int eid = paths[now][i];
-      if(e[eid].f == e[eid].c||lvl[e[eid].t] != lvl[now]+1)continue;
-      if(int re = dfs(e[eid].t,t,min(flow,e[eid].c-e[eid].f))){
-        e[eid].f += re;
-        e[eid^1].f -=re;
+  int dfs(int u, int t, int fl) {
+    if (u == t) return fl;
+    for (int &i = p[u]; i < g[u].size(); i++) {
+      int ei = g[u][i];
+      if (e[ei].f == e[ei].c || d[e[ei].v] != d[u] + 1) continue;
+      if (int re = dfs(e[ei].v, t, min(fl, e[ei].c - e[ei].f))) {
+        e[ei].f += re;
+        e[ei ^ 1].f -= re;
         return re;
       }
     }
     return 0;
   }
-  int flow(int s,int t){
+  int flow(int s, int t) {
     int ans = 0;
-    while(bfs(s,t)){
-      fill(ptr.begin(),ptr.end(),0);
-      while(auto re = dfs(s,t,INT_MAX)){
-        ans += re;
+    for (int l = 0; l < 31; l++) {
+      while (bfs(s, t, l)) {
+        fill(p.begin(), p.end(), 0);
+        while (auto re = dfs(s, t, INT_MAX)) ans += re;
       }
     }
     return ans;
   }
-  bool inScut(int k){
-    return lvl[k] != -1;
+  bool inscut(int k) {
+    return d[k] != -1;
   }
 };
