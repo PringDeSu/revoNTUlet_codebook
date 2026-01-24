@@ -1,41 +1,37 @@
 // only construct the automaton
 struct AC {
-  int nc;
-  char c[MXN];
-  int pi[MXN], p[MXN], nxt[MXN][MXC];
+  const static int c0 = 'a';
+  int nc, c[MXN], pi[MXN], p[MXN], ch[MXN][MXC];
   void init() {
     nc = 2;
-    fill(nxt[0], nxt[0] + MXC, 1);
-    fill(nxt[1], nxt[1] + MXC, -1);
+    fill(ch[0], ch[0] + MXC, 1);
+    fill(ch[1], ch[1] + MXC, -1);
   }
-  int add_node(int par, char _c) {
-    c[nc] = _c;
-    p[nc] = par;
-    fill(nxt[nc], nxt[nc] + MXC, -1);
+  int nn(int pp, char cc) {
+    c[nc] = cc;
+    p[nc] = pp;
+    fill(ch[nc], ch[nc] + MXC, -1);
     return nc++;
   }
-  int push(string &s) {
-    int now = 1;
+  int push(const string &s) {
+    int u = 1;
     for (auto &i : s) {
-      if (nxt[now][i - 'a'] == -1) nxt[now][i - 'a'] = add_node(now, i);
-      now = nxt[now][i - 'a'];
+      int e = i - c0;
+      if (!~ch[u][e]) ch[u][e] = nn(u, i);
+      u = ch[u][e];
     }
-    return now;
+    return u;
   }
   void build() {
     queue<int> q;
-    pi[1] = 0;
-    FOR(i, 0, MXC) {
-      if (nxt[1][i] == -1) nxt[1][i] = nxt[pi[1]][i];
-      else q.push(nxt[1][i]);
-    }
+    q.push(1);
     while (q.size()) {
-      int id = q.front();
+      int u = q.front();
       q.pop();
-      pi[id] = nxt[pi[p[id]]][c[id] - 'a'];
-      FOR(i, 0, MXC) {
-        if (nxt[id][i] == -1) nxt[id][i] = nxt[pi[id]][i];
-        else q.push(nxt[id][i]);
+      pi[u] = (u == 1 ? 0 : ch[pi[p[u]]][c[u] - c0]);
+      FOR(e, 0, MXC) {
+        if (!~ch[u][e]) ch[u][e] = ch[pi[u]][e];
+        else q.push(ch[u][e]);
       }
     }
   }
