@@ -139,7 +139,7 @@
 #CodeBlocks("NTT", "src/math/ntt.cpp")
 // tested at https://ntuj.csie.org/contests/4/problems/3429
 #CodeBlocks("Pollard Rho", "src/math/pollard_rho.cpp")
-// not tested yet
+// tested at https://judge.yosupo.jp/problem/sum_of_floor_of_linear
 #CodeBlocks("Floor Sum", "src/math/floor_sum.cpp")
 
 = Ideograph Advantage
