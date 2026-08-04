@@ -1,80 +1,49 @@
-#define FOR(i, j, k) for (int i = j, Z = k; i < Z; i++)
-
-struct NTT {
-  const static int LG = 20;
-  int mod;
-  int o[(1 << LG) + 1];
-  int ADD(int a, int b) {
-    // help yourself
-  }
-  int SUB(int a, int b) {
-    // help yourself
-  }
-  int MUL(int a, int b) {
-    // help yourself
-  }
-  int POW(int a, int b) {
-    // help yourself
-  }
-  NTT(int g, int gap, int _mod) {
-    mod = _mod;
-    o[0] = 1;
-    int pp = POW(g, gap);
-    FOR(i, 1, (1 << LG) + 1) o[i] = MUL(o[i - 1], pp);
-  }
-  void operator()(int *a, int n, bool inv) {
-    auto REV = [&](int x) -> int {
-      int ans = 0;
-      for (int w = 1; w < n; w <<= 1) {
-        ans = (ans << 1) | (x & 1);
-        x >>= 1;
-      }
-      return ans;
-    };
-    FOR(i, 0, n) {
-      int j = REV(i);
-      if (i < j) swap(a[i], a[j]);
-    }
-    for (int w = 1; w < n; w <<= 1) {
-      int owo = 1 << (LG - __lg(w) - 1), oid = 0;
-      FOR(i, 0, w) {
-        int omega = o[inv ? (1 << LG) - oid : oid];
-        for (int s = 0; s < n; s += (w << 1)) {
-          int &L = a[s + i], &R = a[s + w + i];
-          int l = L, r = MUL(omega, R);
-          L = ADD(l, r);
-          R = SUB(l, r);
+template <int mod>
+struct mint {
+    static int add(int a, int b) { return ((a += b) >= mod ? a - mod : a); }
+    static int mul(int a, int b) { return (ll) a * b % mod; }
+    static int pow(int a, int b) {
+        int c = 1;
+        for (; b; b >>= 1) {
+            if (b & 1) c = mul(c, a);
+            a = mul(a, a);
         }
-        oid += owo;
-      }
+        return c;
     }
-    if (inv) {
-      int x = POW(n, mod - 2);
-      FOR(i, 0, n) a[i] = MUL(a[i], x);
-    }
-  }
 };
 
-NTT ntt1(3, 952, 998244353);
-NTT ntt2(3, 100, 104857601);
-NTT ntt3(3, 160, 167772161);
-
-namespace POLY {
-  const int MXM = 4 * MXN;
-  int a[MXM], b[MXM];
-  vector<int> VMUL(vector<int> v, vector<int> w, int m) {
-    int N = 4 << __lg(m);
-    fill(a, a + N, 0);
-    fill(b, b + N, 0);
-    int na = min((int) v.size(), m), nb = min((int) w.size(), m);
-    FOR(i, 0, na) a[i] = v[i];
-    FOR(i, 0, nb) b[i] = w[i];
-    ntt(a, N, false);
-    ntt(b, N, false);
-    FOR(i, 0, N) a[i] = MUL(a[i], b[i]);
-    ntt(a, N, true);
-    vector<int> ans;
-    FOR(i, 0, m) ans.push_back(a[i]);
-    return ans;
-  }
-}
+template <int mod, int g>
+struct NTT {
+    const static int LYR = 20;
+    using M = mint<mod>;
+    int o[1 << LYR];
+    NTT() {
+        int m = M::pow(g, (mod - 1) >> LYR);
+        for (int s = 1 << (LYR - 1); s; s >>= 1, m = M::mul(m, m)) {
+            o[s] = 1;
+            FOR(i, 1, s) o[s + i] = M::mul(o[s + i - 1], m);
+        }
+    }
+    void operator()(int *a, int N, bool inv = false) const {
+        for (int i = 0, j = 1; j < N - 1; j++) {
+            for (int k = N >> 1; (i ^= k) < k; k >>= 1);
+            if (j < i) swap(a[i], a[j]);
+        }
+        for (int w = 1; w < N; w <<= 1) {
+            int h = w << 1;
+            for (int s = 0; s < N; s += h) {
+                FOR(t, 0, w) {
+                    int u = M::mul(a[s + t + w], o[w + t]);
+                    a[s + t + w] = M::add(a[s + t], mod - u);
+                    a[s + t] = M::add(a[s + t], u);
+                }
+            }
+        }
+        if (inv) {
+            int u = M::pow(N, mod - 2);
+            reverse(a + 1, a + N);
+            FOR(i, 0, N) a[i] = M::mul(a[i], u);
+        }
+    }
+    void operator()(vector<int> &a, int N, bool inv = false) const { operator()(a.data(), N, inv); }
+};
