@@ -47,6 +47,8 @@
 == vimrc
 #include "src/setup/vimrc.typ"
 #CodeBlocks("default code", "src/setup/tpl.cpp")
+== Makefile
+#include "src/setup/makefile.typ"
 
 = Graph
 // tested at https://judge.yosupo.jp/submission/313269

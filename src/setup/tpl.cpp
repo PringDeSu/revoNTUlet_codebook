@@ -3,7 +3,7 @@ using namespace std;
 
 #ifdef MIKU
 string dbmc = "\033[1;38;2;57;197;187m", dbrs = "\033[0m";
-#define debug(x...) cerr << dbmc << "[" << #x << "] : ", dout(x)
+#define debug(x...) cerr << dbmc << "#" << __LINE__ << " [" << #x << "]: ", dout(x)
 void dout() { cerr << dbrs << endl; }
 template <typename T, typename ...U>
 void dout(T t, U ...u) { cerr << t << (sizeof...(u) ? ", " : ""); dout(u...); }
