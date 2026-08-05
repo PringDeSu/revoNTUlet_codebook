@@ -21,7 +21,7 @@
 
 #set heading(numbering: "1.1")
 #set heading(supplement: none)
-#block(height: 450pt, columns(2, gutter: 8pt, outline()))
+#block(height: 500pt, columns(2, gutter: 8pt, outline()))
 
 #show heading: it => {
   block(
@@ -130,19 +130,32 @@
 
 = Math
 // not tested yet
-#CodeBlocks("Chinese Remainder Theorem", "src/math/crt.cpp")
-// not tested yet
 #CodeBlocks("Euclid", "src/math/euclid.cpp")
 // tested at https://cses.fi/problemset/task/2111
 #CodeBlocks("FFT", "src/math/fft.cpp")
-// not tested yet
+// tested at https://judge.yosupo.jp/problem/bitwise_and_convolution
+// tested at https://judge.yosupo.jp/problem/bitwise_xor_convolution
 #CodeBlocks("FWT", "src/math/fwt.cpp")
-// not tested yet
-#CodeBlocks("NTT", "src/math/ntt.cpp")
 // tested at https://ntuj.csie.org/contests/4/problems/3429
 #CodeBlocks("Pollard Rho", "src/math/pollard_rho.cpp")
 // tested at https://judge.yosupo.jp/problem/sum_of_floor_of_linear
 #CodeBlocks("Floor Sum", "src/math/floor_sum.cpp")
+
+= Polynomial
+// tested at https://judge.yosupo.jp/problem/convolution_mod
+#CodeBlocks("NTT", "src/polynomial/ntt.cpp")
+// tested at https://judge.yosupo.jp/problem/convolution_mod_1000000007
+#CodeBlocks("Chinese Remainder Theorem", "src/polynomial/crt.cpp")
+// tested at https://judge.yosupo.jp/problem/convolution_mod
+#CodeBlocks("FPS base", "src/polynomial/fps-base.cpp")
+// tested at https://judge.yosupo.jp/problem/inv_of_formal_power_series
+// tested at https://judge.yosupo.jp/problem/division_of_polynomials
+#CodeBlocks("FPS div", "src/polynomial/fps-div.cpp")
+// tested at https://judge.yosupo.jp/problem/log_of_formal_power_series
+// tested at https://judge.yosupo.jp/problem/exp_of_formal_power_series
+#CodeBlocks("FPS exp", "src/polynomial/fps-exp.cpp")
+// tested at https://judge.yosupo.jp/problem/pow_of_formal_power_series
+#CodeBlocks("FPS pow", "src/polynomial/fps-pow.cpp")
 
 = Ideograph Advantage
 // tested at 2025 Taichung Regional

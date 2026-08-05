@@ -1,24 +1,16 @@
-//     AND       OR        XOR
-//  | 1  1 |  | 1  0 |  | 1  1 |
-//  | 0  1 |  | 1  1 |  | 1 -1 |
-
-struct FWT {
-  // mod operations ADD, SUB, MUL, POW (if needed)
-  void btf(int &L, int &R, bool inv) { // sample: XOR
-    int l = L, r = R;
-    L = ADD(l, r);
-    R = SUB(l, r);
-  }
-  void operator()(int *a, int n, bool inv) {
-    // sample: XOR
-    for (int w = 1; w < n; w <<= 1) {
-      FOR(i, 0, n) if (i & w) {
-        btf(a[i - w], a[i], inv);
-      }
-    }
-    if (inv) {
-      int x = POW(n, mod - 2);
-      FOR(i, 0, n) a[i] = MUL(a[i], x);
+void conv(int *a, int N, void (*btf)(int&, int&)) {
+  for (int j = 1; j < N; j <<= 1) {
+    FOR(i, 0, N) {
+      if (i & j) continue;
+      btf(a[i], a[i ^ j]);
     }
   }
-};
+}
+// maybe use mod arithmetic?
+void fwtand0(int &L, int &R) { L += R; }
+void fwtand1(int &L, int &R) { L -= R; }
+void fwtor0(int &L, int &R) { R += L; }
+void fwtor1(int &L, int &R) { R -= L; }
+void fwtxor(int &L, int &R) { L += R; R = L - 2 * R; }
+// xor use the same btf whenever the value inv is
+// remember to divide by N after inv when using xor
