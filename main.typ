@@ -74,6 +74,8 @@
 
 = Data Structure
 // reference : 8BCube
+// tested at https://judge.yosupo.jp/submission/395549
+#CodeBlocks("Cartesian Tree", "src/data_structure/cartesian.cpp")
 // tested at https://judge.yosupo.jp/submission/238643
 #CodeBlocks("Dynamic Convex Hull", "src/data_structure/dynamic_convex_hull.cpp")
 // tested at https://judge.yosupo.jp/submission/239483
