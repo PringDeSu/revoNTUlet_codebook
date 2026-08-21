@@ -67,6 +67,5 @@ namespace SAIS {
     copy_n(SA + 1, n, SA);
     FOR(i, 0, n) RA[SA[i]] = i;
     mkhei(n);
-    copy(H + 1, H + n, H);
   }
 }
