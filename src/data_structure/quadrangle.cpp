@@ -1,47 +1,31 @@
-struct QUADRANGLE {
-  struct TUPLE {
-    int l, r, id;
-    TUPLE() {}
-    TUPLE(int _l, int _r, int _id) : l(_l), r(_r), id(_id) {}
-  };
-  int n, now;
-  deque<TUPLE> dq;
-
-  int calc_dp(int id, int i) {
-    // ...
+// snippets from CSES houses and schools
+pd[0] = INF;
+deque<P> dq;
+dq.push_back(P{1, n + 1, 0});
+FOR(i, 1, n + 1) {
+  int id = dq.front().id;
+  pd[i] = dp[id] + f(id, i);
+  if (++dq.front().l == dq.front().r) {
+    dq.pop_front();
   }
-  bool cmp(int cid, int pid, int i) {
-    // ...
-  }
-  void init(int _n) {
-    n = _n;
-    now = 1;
-    dq.clear();
-  }
-  void kill_head() {
-    now++;
-    if (dq.front().l == dq.front().r) dq.pop_front();
-    else dq.front().l++;
-  }
-  void push(int id) {
-    while (dq.size()) {
-      TUPLE tl = dq.back();
-      dq.pop_back();
-      if (cmp(id, tl.id, tl.l)) {
-        continue;
-      }
-      int l = tl.l, r = tl.r + 1;
-      while (l + 1 < r) {
-        int mid = (l + r) >> 1;
-        (cmp(id, tl.id, mid) ? r : l) = mid;
-      }
-      dq.push_back(TUPLE(tl.l, l, tl.id));
-      if (r <= n) dq.push_back(TUPLE(r, n, id));
-      return;
+  while (dq.size()) {
+    auto [l, r, id] = dq.back();
+    dq.pop_back();
+    if (dp[i] + f(i, l) <= dp[id] + f(id, l)) {
+      continue;
     }
-    dq.push_back(TUPLE(now, n, id));
+    int l0 = l;
+    r++;
+    while (l + 1 < r) {
+      int mid = (l + r) >> 1;
+      (dp[i] + f(i, mid) <= dp[id] + f(id, mid) ? r : l) = mid;
+    }
+    dq.push_back(P{l0, min(n + 1, r), id});
+    if (r < n + 1) dq.push_back(P{r, n + 1, i});
+    break;
   }
-  int determine(int id) {
-    return calc_dp(dq.front().id, id);
+  if (dq.empty()) {
+    dq.push_back(P{i + 1, n + 1, i});
   }
-};
+}
+copy(pd, pd + n + 1, dp);
