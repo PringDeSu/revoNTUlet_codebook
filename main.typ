@@ -84,6 +84,8 @@
 #CodeBlocks("Splay", "src/data_structure/splay.cpp")
 // tested at https://judge.yosupo.jp/submission/238822
 #CodeBlocks("Treap", "src/data_structure/treap.cpp")
+// tested at https://judge.yosupo.jp/submission/394838
+#CodeBlocks("ETT", "src/data_structure/ett.cpp")
 // not tested yet
 #CodeBlocks("Quadrangle", "src/data_structure/quadrangle.cpp")
 // not tested yet
