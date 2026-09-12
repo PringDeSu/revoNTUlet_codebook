@@ -23,5 +23,11 @@ struct Pt{
     if(dir(s1-s2,e2-s2)*dir(e1-s2,e2-s2)<0&&dir(s2-s1,e1-s1)*dir(e2-s1,e1-s1)<0)return 1;
     return 0;
   }
-
 };
+
+typedef pair<double, double> pdd;
+pdd intersect(pdd p1, pdd p2, pdd p3, pdd p4) {
+  double a123 = cross(p2 - p1, p3 - p1);
+  double a124 = cross(p2 - p1, p4 - p1);
+  return (p4 * a123 - p3 * a124) / (a123 - a124); // C^3 / C^2
+}
