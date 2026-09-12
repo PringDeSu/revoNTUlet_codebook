@@ -110,6 +110,8 @@
 #CodeBlocks("Tangent Of Two Circles", "src/geometry/tangent_of_two_circles.cpp")
 // not tested yet
 #CodeBlocks("Circle Cover", "src/geometry/circle_cover.cpp")
+// not tested yet
+#CodeBlocks("Simulated Annealing", "src/geometry/simulated_annealing.cpp")
 
 
 = String
