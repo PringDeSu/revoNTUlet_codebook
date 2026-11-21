@@ -55,10 +55,14 @@
 #CodeBlocks("Block Cut Tree", "src/graph/block_cut_tree.cpp")
 // tested at https://codeforces.com/group/16AkdQqf1V/contest/631725/problem/1A
 #CodeBlocks("Dinic", "src/graph/dinic.cpp")
+// tested at https://ntuj.csie.org/contests/12/problems/3776
+#CodeBlocks("Directed MST", "src/graph/directed_mst.cpp")
 // tested at https://codeforces.com/group/79niCea2aI/contest/548168/problem/R
 #CodeBlocks("Dominator Tree", "src/graph/dominator_tree.cpp")
 // tested at https://ntuj.csie.org/contests/4/problems/3426
 #CodeBlocks("Euler Tour", "src/graph/euler_tour.cpp")
+// tested at https://judge.yosupo.jp/submission/327539
+#CodeBlocks("General Matching", "src/graph/general_matching.cpp")
 // tested at https://codeforces.com/group/79niCea2aI/contest/552133/problem/O
 #CodeBlocks("Gomory Hu", "src/graph/gomory_hu.cpp")
 // tested at https://codeforces.com/group/79niCea2aI/contest/548168/problem/S
@@ -67,10 +71,10 @@
 #CodeBlocks("KM", "src/graph/km.cpp")
 // tested at https://ntuj.csie.org/contests/4/problems/3423
 #CodeBlocks("Max Clique", "src/graph/max_clique.cpp")
+// tested at https://ntuj.csie.org/contests/12/problems/3788
+#CodeBlocks("Manhattan MST", "src/graph/manhattan_mst.cpp")
 // tested at https://codeforces.com/group/16AkdQqf1V/contest/628697/problem/T
 #CodeBlocks("Minimum Cost Maximum Flow", "src/graph/mcmf.cpp")
-// tested at https://judge.yosupo.jp/submission/327539
-#CodeBlocks("Minimum Cost Maximum Flow", "src/graph/general_matching.cpp")
 
 = Data Structure
 // reference : 8BCube
