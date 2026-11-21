@@ -109,7 +109,7 @@
 // tested at https://codeforces.com/group/16AkdQqf1V/contest/632330/problem/C
 #CodeBlocks("Min Enclosing Circle", "src/geometry/min_enclosing_circle.cpp")
 // not tested yet
-#CodeBlocks("Tangent Of Two Circles", "src/geometry/tangent_of_two_circles.cpp")
+#CodeBlocks("Tangent of Two Circles", "src/geometry/tangent_of_two_circles.cpp")
 // not tested yet
 #CodeBlocks("Circle Cover", "src/geometry/circle_cover.cpp")
 // not tested yet
@@ -130,9 +130,11 @@
 // not tested yet
 #CodeBlocks("SAM", "src/string/SAM.cpp")
 // not tested yet
-#CodeBlocks("eertree", "src/string/eertree.cpp")
+#CodeBlocks("Eertree", "src/string/eertree.cpp")
 // tested at https://cses.fi/problemset/task/1110/
-#CodeBlocks("minimal rotation", "src/string/minimal_rotation.cpp")
+#CodeBlocks("Minimal Rotation", "src/string/minimal_rotation.cpp")
+// not tested yet
+#CodeBlocks("Lyndon Factorization", "src/string/lyndon_factorization.cpp")
 
 = Math
 // not tested yet
@@ -153,15 +155,15 @@
 // tested at https://judge.yosupo.jp/problem/convolution_mod_1000000007
 #CodeBlocks("Chinese Remainder Theorem", "src/polynomial/crt.cpp")
 // tested at https://judge.yosupo.jp/problem/convolution_mod
-#CodeBlocks("FPS base", "src/polynomial/fps-base.cpp")
+#CodeBlocks("FPS Base", "src/polynomial/fps-base.cpp")
 // tested at https://judge.yosupo.jp/problem/inv_of_formal_power_series
 // tested at https://judge.yosupo.jp/problem/division_of_polynomials
-#CodeBlocks("FPS div", "src/polynomial/fps-div.cpp")
+#CodeBlocks("FPS Div", "src/polynomial/fps-div.cpp")
 // tested at https://judge.yosupo.jp/problem/log_of_formal_power_series
 // tested at https://judge.yosupo.jp/problem/exp_of_formal_power_series
-#CodeBlocks("FPS exp", "src/polynomial/fps-exp.cpp")
+#CodeBlocks("FPS Exp", "src/polynomial/fps-exp.cpp")
 // tested at https://judge.yosupo.jp/problem/pow_of_formal_power_series
-#CodeBlocks("FPS pow", "src/polynomial/fps-pow.cpp")
+#CodeBlocks("FPS Pow", "src/polynomial/fps-pow.cpp")
 
 = Ideograph Advantage
 // tested at 2025 Taichung Regional
