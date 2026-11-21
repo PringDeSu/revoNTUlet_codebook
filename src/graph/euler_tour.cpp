@@ -1,5 +1,6 @@
 struct EulerTour{
   // undirected graph,0-indexed,fails if doesn't exist
+  // need to check degree before calling solve()
   // for directed graph, remove the g[b].push_back(pii(a, id)) line in add_edge
   // returns the order of edges
   vector<vector<pii>> g;
